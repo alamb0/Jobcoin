@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# Gemini - Jobcoin
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Austin Lamb  
+https://jobcoin.gemini.com/crucial-tingling
 
-## Available Scripts
+# How to Run
 
-In the project directory, you can run:
+Please install node modules first and then run the application locally. This should open the application at http://localhost:3000. An `.env` file is included with API endpoints for possible use with different environments.
 
-### `npm start`
+```bash
+npm i
+npm start
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+You can preview expected `.env` variables in the `.env.example` file.
+| Environment Variable            | Description                                                  |
+| ------------------------------- | ------------------------------------------------------------ |
+| REACT_APP_TRANSACTIONS_ENDPOINT | https://jobcoin.gemini.com/crucial-tingling/api#transactions |
+| REACT_APP_ADDRESSES_ENDPOINT    | https://jobcoin.gemini.com/crucial-tingling/api#addresses    |
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# Pages
 
-### `npm test`
+## Homepage
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Consists of a form that takes in an address and goes to account page. Requires a valid address.
 
-### `npm run build`
+## Account/Graph page
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The graph is a line chart that displays the account balance over time. The transactions could be displayed in a list or in a table but the transactions data from the API did not return a balance at each transaction.
+To display the balance, the original amount when created was used to subtract or add to the balance based on if the account was the sender or receiver of each transaction.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The balance of the users address is displayed and the balance and graph update when sending Jobcoins. The form requires a string for address and number for amount, to allow integers and floating point numbers, and users are notified if they try to send Jobcoin with no balance. The sign out link in the navbar returns to home page.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Setup
 
-### `npm run eject`
+App created with Create React App and VS Code snippets from https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Dependencies
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- React Router
+- Styled Components
+- Axios
+- Moment
+- React Hook Form - used to handle form state and validation and display error messages
+- Yup - used for schema validation of form inputs
+- Recharts - used line chart to display balance over time
+- React Responsive - used to put Recharts in its provided ResponsiveContainer on a small screen size
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# Postman
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+There is an included Postman collection `Jobcoin.postman_collection.json` to test API calls. To use select Import in Postman and load the collection.
 
-## Learn More
+# Future State / Improvements
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+There are a few things that could be added to improve the current application
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- The graph page could have a selector to limit how much data is shown such as 1 Day, 7 Day, etc.
+- The address is passed from the home page through react router state to the account page but this could be improved to allow the account page to load on its own without being navigated to. This could be a query parameter or global state variable.
+- The API calls are separated out to the `utils/api.js` file but the setting of loading, success, and error state is done in the component where the API is called. Also the reloading of account balance and transactions are passed as props but both of these things could be updated with useContext and useReducer hooks, or a library like Redux or React Query.
+- Loading status could be replaced with a Spinner or Skeleton.
+- The page title is set in a useEffect but there are libraries like React Helmet that update the title and meta tags.
+- Styling, formatting, and overall responsiveness could be improved.
