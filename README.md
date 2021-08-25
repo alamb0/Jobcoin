@@ -1,7 +1,4 @@
-# Gemini - Jobcoin
-
-Austin Lamb  
-https://jobcoin.gemini.com/crucial-tingling
+# Jobcoin
 
 # How to Run
 
