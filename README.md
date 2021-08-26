@@ -10,10 +10,10 @@ npm start
 ```
 
 You can preview expected `.env` variables in the `.env.example` file.
-| Environment Variable            | Description                                                  |
-| ------------------------------- | ------------------------------------------------------------ |
-| REACT_APP_TRANSACTIONS_ENDPOINT | https://jobcoin.gemini.com/crucial-tingling/api#transactions |
-| REACT_APP_ADDRESSES_ENDPOINT    | https://jobcoin.gemini.com/crucial-tingling/api#addresses    |
+| Environment Variable            | Description |
+| ------------------------------- | ----------- |
+| REACT_APP_TRANSACTIONS_ENDPOINT |             |
+| REACT_APP_ADDRESSES_ENDPOINT    |             |
 
 # Pages
 
